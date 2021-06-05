@@ -13,9 +13,9 @@ from django import template
 def index(request):
     
     context = {}
-    context['segment'] = 'index'
+    context['segment'] = 'dashboard'
 
-    html_template = loader.get_template( 'index.html' )
+    html_template = loader.get_template( 'dashboard.html' )
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
