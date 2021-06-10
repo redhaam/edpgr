@@ -1,0 +1,24 @@
+<div class="col-12">
+	<table class="table align-items-center table-flush">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">Titre dossier</th>
+				<th scope="col">Emetteur</th>
+				<th scope="col">Etat</th>
+				<th scope="col">Date d'emission</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dossier in dossiers %}
+			<tr>
+				<th scope="row"> {{dossier.title}} </th>
+				<td> {{dossier.sender}} </td>
+				<td> {{dossier.status}} </td>
+				<td>
+					{{dossier.sent_date|date}}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

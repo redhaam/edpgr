@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from datetime import date
-from django.db import models
+from djongo import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -14,18 +14,18 @@ from django.utils import timezone
 class Dossier(models.Model):
     TYPES_CHOICES = ()
     STATUS_CHOICES = (('submitted','Non traité'), ('scheduled','programmé'), ('done','traité'))
-
+    # _id = models.
     type = models.CharField(max_length=50)
-    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="owner")
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="owner",null=True,blank=True)
     sender = models.ForeignKey(User,on_delete=models.CASCADE, related_name="sender")
     title = models.CharField(max_length=250)
-    attached_files = models.URLField()
+    attached_files = models.URLField(null=True,blank=True)
     sent_date = models.DateTimeField(default=timezone.now)
-    scheduled_date = models.TimeField(null=True)
+    scheduled_date = models.TimeField(null=True,blank=True)
     updated = models.TimeField(auto_now=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    decision= models.CharField(max_length=250)
-    remarks = models.CharField(max_length=250)
+    decision= models.CharField(max_length=250,null=True,blank=True)
+    remarks = models.CharField(max_length=250,null=True,blank=True)
 
     class Meta:
         ordering =('-sent_date',)
@@ -48,7 +48,7 @@ class Meeting(models.Model):
     organizer = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="meeting_organizer")
     title = models.CharField(max_length=250)
     date = models.DateTimeField()
-    body = models.CharField(max_length= 500)
+    body = models.TextField()
     attached_files = models.URLField()
     guests = models.ForeignKey(User, on_delete=models.CASCADE,related_name="guests_list")
     folders_to_treat = models.ForeignKey(Dossier, on_delete=models.CASCADE)
