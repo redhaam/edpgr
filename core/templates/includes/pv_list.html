@@ -1,0 +1,24 @@
+<div class="col-12">
+	<table class="table align-items-center table-flush">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">Titre</th>
+				<th scope="col">Status</th>
+				<th scope="col">Validé par</th>
+				<th scope="col">Date réunion</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for pv in pvs %}
+			<tr>
+				<th scope="row"> {{pv.title}} </th>
+				<td> {{pv.sender}} </td>
+				<td> {{pv.status}} </td>
+				<td>
+					{{pv.sent_date|date}}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

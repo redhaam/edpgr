@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
-from .models import Dossier
+from .models import Dossier, Proces_verbal
 
 @login_required(login_url="/login/")
 def index(request):
@@ -23,8 +23,27 @@ def index(request):
     return HttpResponse(html_template.render(context, request))
 
 
+@login_required(login_url="/login/")
+def documents_view(request):
+    
+    context = {}
+    context['segment'] = 'documents'
+
+    pvs = Proces_verbal.objects.all()
+    print(pvs)
+    context['pvs'] = pvs
+
+    html_template = loader.get_template( 'documents.html' )
+    return HttpResponse(html_template.render(context, request))
+
+
 # @login_required(login_url="/login/")
 # def 
+
+#pv = Proces_verbal.objects.all()
+#    context['proces_verbal'] = pv
+
+    
 
 
 @login_required(login_url="/login/")

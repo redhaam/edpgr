@@ -3,7 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from app.models import Dossier, Meeting
+from app.models import Dossier, Meeting, Proces_verbal
 from django.contrib import admin
 
 # Register your models here.
@@ -15,4 +15,8 @@ class DossierAdmin(admin.ModelAdmin):
     
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
+    list_filter = ('status',)
+
+@admin.register(Proces_verbal)
+class DossierAdmin(admin.ModelAdmin):
     list_filter = ('status',)
