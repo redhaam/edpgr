@@ -12,6 +12,11 @@ from .models import Dossier, Proces_verbal
 
 @login_required(login_url="/login/")
 def index(request):
+    return dashboard_view(request)
+
+
+@login_required(login_url="/login/")
+def dashboard_view(request):
     
     context = {}
     context['segment'] = 'dashboard'
@@ -35,6 +40,14 @@ def documents_view(request):
 
     html_template = loader.get_template( 'documents.html' )
     return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url='/login/')
+def document_detail_view(request,document_id):
+    document = get_object_or_404(Dossier, id=document_id )
+
+    html_template = loader.get_template('dossier_detail.html')
+    return HttpResponse(html_template.render({'dossier' : document},request))
 
 
 # @login_required(login_url="/login/")
