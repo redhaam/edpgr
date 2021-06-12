@@ -15,6 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
 
 -->
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,19 +31,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/img/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon/favicon-16x16.png' %}">
 
 <!-- Fontawesome -->
-<link type="text/css" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link type="text/css" href="{% static '@fortawesome/fontawesome-free/css/all.min.css'  %}" rel="stylesheet">
 
 <!-- Sweet Alert -->
-<link type="text/css" href="/static/assets/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+<link type="text/css" href="{% static 'sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
 
 <!-- Notyf -->
-<link type="text/css" href="/static/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
+<link type="text/css" href="{% static 'notyf/notyf.min.css' %}" rel="stylesheet">
 
 <!-- Volt CSS -->
-<link type="text/css" href="/static/assets/css/volt.css" rel="stylesheet">
+<link type="text/css" href="{% static 'assets/css/volt.css' %}" rel="stylesheet">
 
 </head>
 <body>
