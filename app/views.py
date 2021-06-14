@@ -35,7 +35,6 @@ def documents_view(request):
     context['segment'] = 'documents'
 
     pvs = Proces_verbal.objects.all()
-    print(pvs)
     context['pvs'] = pvs
 
     html_template = loader.get_template( 'documents.html' )
@@ -43,11 +42,22 @@ def documents_view(request):
 
 
 @login_required(login_url='/login/')
-def document_detail_view(request,document_id):
-    document = get_object_or_404(Dossier, id=document_id )
+def dossier_detail_view(request,document_id):
+    dossier = get_object_or_404(Dossier, id=document_id )
 
     html_template = loader.get_template('dossier_detail.html')
-    return HttpResponse(html_template.render({'dossier' : document},request))
+    return HttpResponse(html_template.render({'dossier' : dossier},request))
+
+
+
+@login_required(login_url='/login/')
+def document_detail_view(request,document_id):
+    #document = get_object_or_404(Proces_verbal, id=document_id )
+    document = get_object_or_404(Proces_verbal, id=document_id )
+
+    print(document)
+    html_template = loader.get_template('documents_detail.html')
+    return HttpResponse(html_template.render({'document' : document},request))
 
 
 # @login_required(login_url="/login/")

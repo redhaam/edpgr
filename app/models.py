@@ -34,7 +34,8 @@ class Dossier(models.Model):
         return self.title
 
 
-class Proces_verbal(models.Model):
+class Proces_verbal(models.Model):#TODO: add status choices
+    id = models.IntegerField(("id"), "primary_key=True")
     title = models.CharField(max_length=150)
     link_to = models.URLField()
     date = models.DateTimeField()
