@@ -13,7 +13,7 @@
 			{% for pv in pvs %}
 			<tr>
 				<td scope="row"> {{pv.id}} </a> </td>
-				<td scope="row"> <a href="/documents_detail.html/{{pv.id}}"> {{pv.title}} </a> </td>
+				<td scope="row"> <a href=" {% url 'pv_detail' pv_id=pv.id%}"> {{pv.title}} </a> </td>
 				<td> {{pv.status}} </td>
 				<td> {{pv.validated_by}} </td>
 				<td>

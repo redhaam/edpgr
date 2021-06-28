@@ -10,9 +10,10 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
-    path('dashboard.html', views.dashboard_view),
-    path('documents.html', views.documents_view, name='documents'),
-    path('documents.html/<int:document_id>', views.document_detail_view, name='document_detail'),
+    path('dashboard', views.dashboard_view),
+    path('documents', views.documents_view, name='documents'),
+    path('documents/<int:document_id>', views.dossier_detail_view, name='document_detail'),
+    path('proces_verbal/<int:pv_id>', views.pv_detail_view, name='pv_detail'),
 
 
     # Matches any html file
