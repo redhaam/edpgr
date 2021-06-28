@@ -66,12 +66,22 @@ class Meeting(models.Model):
     date = models.DateTimeField()
     body = models.TextField()
     attached_files = models.URLField()
-    guests = models.ArrayField(model_container = User)
+    # guests = models.ArrayField(model_container = User)
     # folders_to_treat = models.ArrayField(model_container = Dossier)
-    # pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING)
+    pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now=True)
     status = models.CharField("submitted", max_length=50)
 
+class Interest(models.Model):
+    value = models.CharField(max_length=50, primary_key= True)
+    label = models.CharField(max_length=50)
 
+class Expert(models.Model):
+    full_name = models.CharField(max_length=50)
+    title = models.CharField( max_length=50)
+    grade = models.CharField( max_length=50)
+    organization = models.CharField(max_length=50)
+    interests = models.ArrayField(model_container = Interest)
 
-    
+    def get_absolute_url(self):
+        return reverse("expert_detail", kwargs={"pk": self.pk})
