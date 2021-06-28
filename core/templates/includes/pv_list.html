@@ -2,6 +2,7 @@
 	<table class="table align-items-center table-flush">
 		<thead class="thead-light">
 			<tr>
+				<th scope="col">id</th>
 				<th scope="col">Titre</th>
 				<th scope="col">Status</th>
 				<th scope="col">Validé par</th>
@@ -11,11 +12,12 @@
 		<tbody>
 			{% for pv in pvs %}
 			<tr>
-				<th scope="row"> {{pv.title}} </th>
-				<td> {{pv.sender}} </td>
+				<td scope="row"> {{pv.id}} </a> </td>
+				<td scope="row"> <a href="/documents_detail.html/{{pv.id}}"> {{pv.title}} </a> </td>
 				<td> {{pv.status}} </td>
+				<td> {{pv.validated_by}} </td>
 				<td>
-					{{pv.sent_date|date}}
+					{{pv.date|date}}
 				</td>
 			</tr>
 			{% endfor %}

@@ -1,0 +1,49 @@
+<div class="col-12">
+	<div class="col-lg-4 col-sm-6">
+                          
+                          <!-- Form -->
+                          <div class="mb-3">
+                              <label for="disabledTextInput">Title</label>
+                              <input type="text" id="disabledTextInput" class="form-control" placeholder="{{document.title}}" disabled>
+                          </div>
+                          <div class="mb-3">
+                              <label for="disabledTextInput">Validé par</label>
+                              <input type="text" id="disabledTextInput" class="form-control" placeholder="{{document.validated_by}}" disabled>
+                          </div>
+                          <div class="mb-3">
+                              <label for="disabledSelect">Status du PV</label>
+                              <select id="disabledSelect" class="form-control" disabled>
+                                <option selected>{{document.status}} </option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="birthday">Date de réunion</label>
+                              <div class="input-group">
+                                  <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                  <input data-datepicker="" class="form-control" id="birthday" type="text" placeholder="{{document.date|date}}" required disabled>                                               
+                              </div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="disabledTextInput">Lien Du PV</label>
+                              <a href="{{document.link_to}}"  target="_blank"><input type="text" id="disabledTextInput" class="form-control" placeholder="{{document.link_to}}" disabled>
+                          </div>
+                          <!-- End of Form -->
+                          <!-- Form -->
+                          <!--<div class="mb-4">
+                              <label class="my-1 me-2" for="country">Country</label>
+                              <select class="form-select" id="country" aria-label="Default select example">
+                                  <option selected>Open this select menu</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                              </select>
+                          </div>-->
+                          <!-- End of Form -->
+                          <!-- Form -->
+                          <!--<div class="mb-3">
+                              <label for="formFile" class="form-label">Default file input example</label>
+                              <input class="form-control" type="file" id="formFile">
+                          </div>-->
+                          <!-- End of Form -->
+    </div>
+</div>
