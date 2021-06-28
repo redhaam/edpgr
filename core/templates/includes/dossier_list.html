@@ -11,7 +11,7 @@
 		<tbody>
 			{% for dossier in dossiers %}
 			<tr>
-				<th scope="row"> {{dossier.title}} </th>
+				<th scope="row"> <a href= "{% url 'document_detail' document_id=dossier.id %}"> {{dossier.title}} </a> </th>
 				<td> {{dossier.sender}} </td>
 				<td> {{dossier.status}} </td>
 				<td>

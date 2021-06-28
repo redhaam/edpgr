@@ -23,7 +23,10 @@ def dashboard_view(request):
 
     dossiers = Dossier.objects.all()
     context['dossiers'] = dossiers
-
+    nb_folders_to_be_treated = len(dossiers.filter(status="scheduled"))
+    nb_folders = len(dossiers)
+    context['nb_folders'] = nb_folders
+    context['to_be_treated'] =nb_folders_to_be_treated
     html_template = loader.get_template( 'dashboard.html' )
     return HttpResponse(html_template.render(context, request))
 
@@ -35,7 +38,7 @@ def documents_view(request):
     context['segment'] = 'documents'
 
     pvs = Proces_verbal.objects.all()
-    print(pvs)
+
     context['pvs'] = pvs
 
     html_template = loader.get_template( 'documents.html' )

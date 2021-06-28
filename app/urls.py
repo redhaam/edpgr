@@ -12,7 +12,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('dashboard.html', views.dashboard_view),
     path('documents.html', views.documents_view, name='documents'),
-    path('documents.html/<int:document_id>', views.document_detail_view),
+    path('documents.html/<int:document_id>', views.document_detail_view, name='document_detail'),
 
 
     # Matches any html file
