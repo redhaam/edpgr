@@ -50,7 +50,7 @@ class Dossier(models.Model):
 
 
 class Proces_verbal(models.Model):#TODO: add status choices
-    id = models.IntegerField(("id"), "primary_key=True")
+    id = models.ObjectIdField(primary_key=True)
     title = models.CharField(max_length=150)
     link_to = models.URLField()
     date = models.DateTimeField()
@@ -60,18 +60,28 @@ class Proces_verbal(models.Model):#TODO: add status choices
     updated = models.DateTimeField(auto_now=True)
 
 class Meeting(models.Model):
-    _id= models.ObjectIdField(primary_key= True)
+    _id= models.ObjectIdField('',primary_key= True)
     organizer = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="meeting_organizer")
     title = models.CharField(max_length=250)
     date = models.DateTimeField()
     body = models.TextField()
     attached_files = models.URLField()
-    guests = models.ArrayField(model_container = User)
+    # guests = models.ArrayField(model_container = User)
     # folders_to_treat = models.ArrayField(model_container = Dossier)
-    # pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING)
+    pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now=True)
     status = models.CharField("submitted", max_length=50)
 
+class Interest(models.Model):
+    value = models.CharField(max_length=50, primary_key= True)
+    label = models.CharField(max_length=50)
 
+class Expert(models.Model):
+    full_name = models.CharField(max_length=50)
+    title = models.CharField( max_length=50)
+    grade = models.CharField( max_length=50)
+    organization = models.CharField(max_length=50)
+    interests = models.ArrayField(model_container = Interest)
 
-    
+    def get_absolute_url(self):
+        return reverse("expert_detail", kwargs={"pk": self.pk})

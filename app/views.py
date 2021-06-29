@@ -54,11 +54,9 @@ def dossier_detail_view(request,document_id):
 
 
 @login_required(login_url='/login/')
-def document_detail_view(request,document_id):
-    #document = get_object_or_404(Proces_verbal, id=document_id )
+def pv_detail_view(request,document_id):
     document = get_object_or_404(Proces_verbal, id=document_id )
 
-    print(document)
     html_template = loader.get_template('documents_detail.html')
     return HttpResponse(html_template.render({'document' : document},request))
 
