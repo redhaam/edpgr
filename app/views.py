@@ -54,8 +54,8 @@ def dossier_detail_view(request,document_id):
 
 
 @login_required(login_url='/login/')
-def pv_detail_view(request,document_id):
-    document = get_object_or_404(Proces_verbal, id=document_id )
+def pv_detail_view(request,pv_id):
+    document = get_object_or_404(Proces_verbal, id=pv_id )
 
     html_template = loader.get_template('documents_detail.html')
     return HttpResponse(html_template.render({'document' : document},request))
@@ -83,7 +83,7 @@ def pages(request):
         html_template = loader.get_template( load_template )
         return HttpResponse(html_template.render(context, request))
         
-    except template.TemplateDoesNotExist:
+    except template.TemplateDoesNotExist:   
 
         html_template = loader.get_template( 'page-404.html' )
         return HttpResponse(html_template.render(context, request))
