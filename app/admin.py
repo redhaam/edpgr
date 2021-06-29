@@ -3,7 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from app.models import Dossier, Meeting, Proces_verbal
+from app.models import Candidat, Dossier, Meeting, Proces_verbal
 from django.contrib import admin
 
 # Register your models here.
@@ -20,3 +20,8 @@ class MeetingAdmin(admin.ModelAdmin):
 @admin.register(Proces_verbal)
 class DossierAdmin(admin.ModelAdmin):
     list_filter = ('status',)
+    
+    
+@admin.register(Candidat)
+class DossierAdmin(admin.ModelAdmin):
+    search_fields= ("first_name",)
