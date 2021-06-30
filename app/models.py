@@ -68,9 +68,12 @@ class Meeting(models.Model):
     attached_files = models.URLField()
     # guests = models.ArrayField(model_container = User)
     # folders_to_treat = models.ArrayField(model_container = Dossier)
-    pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING)
+    pv = models.ForeignKey(Proces_verbal ,on_delete=models.DO_NOTHING,null=True, related_name="meeting_pv")
     created = models.DateTimeField(auto_now=True)
     status = models.CharField("submitted", max_length=50)
+
+    def __str__(self):
+        return self.title
 
 class Interest(models.Model):
     value = models.CharField(max_length=50, primary_key= True)
