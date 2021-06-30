@@ -1,13 +1,83 @@
-{% extends "layouts/base.html" %}
-
-{% block title %} Réunion {% endblock %}
-
-
+{% extends "layouts/base.html" %} {% block title %} Réunion {% endblock %}
+{%block content%}
 
 <div>
-<form action="/scheduleMeeting">
-
-
-
-</form>
+	<div class="col-lg-4">
+		<!-- Button Modal -->
+		<button
+			type="button"
+			class="btn btn-block btn-dark mb-3"
+			data-bs-toggle="modal"
+			data-bs-target="#modal-form"
+			>Sign In</button
+		>
+		<!-- Modal Content -->
+		<div
+			class="modal fade"
+			id="modal-form"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="modal-form"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body p-0">
+						<div class="card border-light p-3 p-lg-4">
+							<button
+								type="button"
+								class="btn-close ms-auto"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+							<div class="card-header border-0 text-center pb-0">
+								<h2 class="h4">Programmer une réunion</h2>
+								<span
+									>Veuillez introduire les informations
+									necessaires sur la réunion</span
+								>
+							</div>
+							<div class="card-body p-0 pl-g-3">
+								<form
+									action="/meetings"
+									method="post"
+									class="mt-4"
+								>
+									<div class="form-group">
+										{% csrf_token %} 
+										{{scheduleMeeting.as_p}}
+									</div>
+									<div class="d-grid">
+										<button
+											type="submit"
+											class="btn btn-dark"
+											>Programmer</button
+										>
+									</div>
+								</form>
+								<div
+									class="
+										d-flex
+										justify-content-center
+										align-items-center
+										mt-4
+									"
+								>
+									<span class="fw-normal">
+										Not registered?
+										<a href="#" class="fw-bold"
+											>Create account</a
+										>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of Modal Content -->
+	</div>
 </div>
+
+{% endblock content %}

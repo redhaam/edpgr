@@ -1,14 +1,26 @@
-{% extends "layouts/base.html" %} {% block title %} Dossier detail {% endblock %}
+{% extends "layouts/base.html" %} {% block title %} Dossier detail {% endblock%}
 {% block content%}
 
 <h1 class="text-center"> {{dossier.title}} </h1>
-<div>
-<div class="col-6">
-<ul>
-<li> Nom : {{dossier.owner.first_name}} </li>
-</ul>
-</div>
-</div>
+<div class="row">
+	<div class="col-6">
+		<img
+			src="{{dossier.owner.profile_pic }}"
+			class="img-fluid img-thumbnail square rounded-circle"
+			style="width:250px;height:250px"
+		/>
+	</div>
 
+	<div class="col-6">
+		<ul class="list-group">
+			<li class="list-group-item">
+				Nom : {{dossier.owner.get_fullname}}
+			</li>
+			<li class="list-group-item">
+				Organisation : {{dossier.owner.organization}}
+			</li>
+		</ul>
+	</div>
 
-{% endblock content %}
+	{% endblock content %}</div
+>
