@@ -77,11 +77,13 @@ class Interest(models.Model):
     label = models.CharField(max_length=50)
 
 class Expert(models.Model):
+    _id = models.ObjectIdField('',primary_key=True)
     full_name = models.CharField(max_length=50)
     title = models.CharField( max_length=50)
     grade = models.CharField( max_length=50)
     organization = models.CharField(max_length=50)
-    interests = models.ArrayField(model_container = Interest)
+    #interests = models.ArrayField(model_container = Interest)
+    interests = models.CharField(max_length=50)
 
     def get_absolute_url(self):
         return reverse("expert_detail", kwargs={"pk": self.pk})

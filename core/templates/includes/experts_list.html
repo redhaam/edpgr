@@ -1,0 +1,35 @@
+
+<div class="col-12">
+	<div class="mb-3 mt-5 d-flex">
+		<a href="../add_experts.html" class="text-primary"><button class="btn btn-dark " style="margin-left: auto" type="button">Ajouter Un Expert <span class="fas fa-plus ms-2"></span></button></a>
+	</div>
+	<table class="table align-items-center table-flush">
+		<thead class="thead-light">
+			<tr>
+				{% comment %} <th scope="col">id</th> {% endcomment %}
+				<th scope="col">Nom & Prenom</th>
+				<th scope="col">Titre</th>
+				<th scope="col">grade</th>
+				<th scope="col">Organisation</th>
+				<th scope="col">interêts</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for expert in experts %}
+			<tr>
+				{% comment %} <td scope="row"> {{expert.id}} </td> {% endcomment %}
+				<td scope="row">  {{expert.full_name}}</td>
+				<td> {{expert.title}} </td>
+				<td> {{expert.grade}} </td>
+				<td> {{expert.organization}}</td>
+				<td> {{expert.interests}}</td>
+                <td>
+                {% comment %} {% for interest in expert.interests%}
+                    {{interst}} ", " 
+                {% endfor %} {% endcomment %}   
+                </td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
