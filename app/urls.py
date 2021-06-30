@@ -14,7 +14,8 @@ urlpatterns = [
     path('documents', views.documents_view, name='documents'),
     path('documents/<int:document_id>', views.dossier_detail_view, name='document_detail'),
     path('proces_verbal/<int:pv_id>', views.pv_detail_view, name='pv_detail'),
-
+    path('meetings', views.meetings_view, name='meetings'),
+    path('members', views.members_view, name='members'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

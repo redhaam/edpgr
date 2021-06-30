@@ -1,6 +1,6 @@
 asgiref
 autopep8
-django==2.2.10
+django==3.2.4
 pycodestyle
 pytz
 sqlparse
@@ -10,3 +10,4 @@ python-decouple
 gunicorn
 whitenoise
 djongo
+dnspython   

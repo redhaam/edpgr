@@ -22,9 +22,9 @@ def dashboard_view(request):
     context['segment'] = 'dashboard'
 
     dossiers = Dossier.objects.all()
-    context['dossiers'] = dossiers
     nb_folders_to_be_treated = len(dossiers.filter(status="scheduled"))
     nb_folders = len(dossiers)
+    context['dossiers'] = dossiers
     context['nb_folders'] = nb_folders
     context['to_be_treated'] =nb_folders_to_be_treated
     html_template = loader.get_template( 'dashboard.html' )
@@ -61,12 +61,16 @@ def pv_detail_view(request,document_id):
     return HttpResponse(html_template.render({'document' : document},request))
 
 
-# @login_required(login_url="/login/")
-# def 
+@login_required(login_url="/login/")
+def meetings_view(request):
+    html_template = loader.get_template('meetings.html')
+    return HttpResponse(html_template.render({'segment' : "meetings"},request)) 
 
-#pv = Proces_verbal.objects.all()
-#    context['proces_verbal'] = pv
 
+@login_required(login_url="/login/")
+def members_view(request):
+    html_template = loader.get_template('members.html')
+    return HttpResponse(html_template.render({'segment' : "members"},request)) 
     
 
 
