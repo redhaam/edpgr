@@ -15,6 +15,7 @@ urlpatterns = [
     path('documents/<int:document_id>', views.dossier_detail_view, name='document_detail'),
     path('proces_verbal/<int:pv_id>', views.pv_detail_view, name='pv_detail'),
     path('meetings', views.meetings_view, name='meetings'),
+    path('scheduleMeeting', views.meetings_view, name='meetings'),
     path('members', views.members_view, name='members'),
 
     # Matches any html file

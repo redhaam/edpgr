@@ -9,6 +9,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from .models import Dossier, Proces_verbal
+from .MeetingForm import MeetingForm
 
 @login_required(login_url="/login/")
 def index(request):
@@ -64,7 +65,8 @@ def pv_detail_view(request,document_id):
 @login_required(login_url="/login/")
 def meetings_view(request):
     html_template = loader.get_template('meetings.html')
-    return HttpResponse(html_template.render({'segment' : "meetings"},request)) 
+    form = MeetingForm()
+    return HttpResponse(html_template.render({'segment' : "meetings","scheduleMeeting":form},request)) 
 
 
 @login_required(login_url="/login/")

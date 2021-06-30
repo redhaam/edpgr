@@ -60,7 +60,7 @@ class Proces_verbal(models.Model):#TODO: add status choices
     updated = models.DateTimeField(auto_now=True)
 
 class Meeting(models.Model):
-    _id= models.ObjectIdField('',primary_key= True)
+    _id= models.ObjectIdField('',default="",primary_key= True)
     organizer = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="meeting_organizer")
     title = models.CharField(max_length=250)
     date = models.DateTimeField()
