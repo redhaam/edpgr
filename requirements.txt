@@ -12,3 +12,4 @@ whitenoise
 djongo
 dnspython   
 Pillow
+xhtml2pdf

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load static%}
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PV Réunion</title>
+
+		<link
+			type="text/css"
+			href="{% static '@fortawesome/fontawesome-free/css/all.min.css'  %}"
+			rel="stylesheet"
+		/>
+
+		<link
+			type="text/css"
+			href="{% static 'assets/css/volt.css' %}"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<img src="{% static 'assets/img/header_esi.png'%}" />
+			</div>
+
+			<h1 class="text-center font-weight-bold"> {{ pv.title}} </h1>
+			<p class="text-center" text-lg>{{ pv.description}}</p>
+			<div>
+				<h2>Etaient présents:</h2>
+
+				<table class="table">
+					<tbody>
+						{% for guest in pv.members_present %}
+						<tr>
+							<td scope="row">{{pv.guest.grade}}</td>
+							<td>{{pv.guest.get_fullname}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<h2>Etaient absents:</h2>
+
+				<table class="table">
+					<tbody>
+						{% for guest in pv.members_present %}
+						<tr>
+							<td scope="row">{{pv.guest.grade}}</td>
+							<td>{{pv.guest.get_fullname}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
