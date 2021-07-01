@@ -31,7 +31,7 @@ class Member(models.Model):
     title = models.CharField( max_length=50)
     grade = models.CharField( max_length=50)
     organization = models.CharField(max_length=50)
-    profile_pic = models.ImageField(null=True)
+    profile_pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.get_fullname()

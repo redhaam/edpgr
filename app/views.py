@@ -103,6 +103,7 @@ def meetings_view(request):
             new_pv = Proces_verbal(title=f'PV {form_response["title"]}',date=form_response['date'],status="empty")
             new_pv.save()
             new_meeting.pv = new_pv
+            form = MeetingForm()
         else:
             print('form invalid')
             print(form.errors)
