@@ -28,6 +28,8 @@ class Member(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField( max_length=200)
     last_name = models.CharField( max_length=200)
+    title = models.CharField( max_length=50)
+    grade = models.CharField( max_length=50)
     organization = models.CharField(max_length=50)
     profile_pic = models.ImageField(null=True)
 
@@ -66,13 +68,22 @@ class Dossier(models.Model):
 
 class Proces_verbal(models.Model):#TODO: add status choices
     id = models.AutoField(primary_key=True)
+    type_conseil = models.CharField( max_length=100)
     title = models.CharField(max_length=150)
-    link_to = models.URLField()
+    description = models.TextField()
     date = models.DateTimeField()
+    members_present = models.ManyToManyField(Member,related_name="presents_list")
+    members_absent = models.ManyToManyField(Member,related_name="absent_list")
+    folders_treated = models.ManyToManyField(Dossier)
+
     closing_hour = models.TimeField()
     status = models.CharField(max_length=100)
     validated_by = models.ForeignKey(Member,on_delete=models.DO_NOTHING)
     updated = models.DateTimeField(auto_now=True)
+    link_to = models.URLField()
+
+    def __str__(self):
+        return self.title
 
 class Interest(models.Model):
     value = models.CharField(max_length=50, primary_key= True)

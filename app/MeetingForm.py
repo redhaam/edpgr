@@ -6,7 +6,6 @@ def get_guest_choices():
     guest_choices = list(Member.objects.all())
     get_value = lambda guest : (guest.id,guest.get_fullname())
     key_value_guests = list(map(get_value,guest_choices))
-    print(key_value_guests)
     return(key_value_guests)
     
     

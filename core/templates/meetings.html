@@ -8,7 +8,9 @@
 			class="btn btn-block btn-dark btn-lg mb-3"
 			data-bs-toggle="modal"
 			data-bs-target="#modal-form"
-			>Programmer une réunion</button
+		>
+			<span class="fas fa-plus ms-2"></span> Programmer une
+			réunion</button
 		>
 		<div
 			class="modal fade"
@@ -43,15 +45,14 @@
 								>
 									<div class="form-group">
 										{% csrf_token %}
-												{{scheduleMeeting.as_p}}
-
+										{{scheduleMeeting.as_p}}
 									</div>
 									<div class="d-grid">
 										<button
 											type="submit"
 											class="btn btn-dark"
-											>Programmer</button
-										>
+											>Programmer
+										</button>
 									</div>
 								</form>
 								<div
@@ -77,11 +78,7 @@
 		<!-- End of Modal Content -->
 	</div>
 
-	<div>
-	{% include "includes/meetings_list.html" %}
-	
-	</div>
-
+	<div> {% include "includes/meetings_list.html" %} </div>
 </div>
 
 {% endblock content %}

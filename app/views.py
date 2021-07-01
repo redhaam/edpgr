@@ -76,6 +76,14 @@ def pv_detail_view(request,pv_id):
 
     html_template = loader.get_template('documents_detail.html')
     return HttpResponse(html_template.render({'document' : document},request))
+    
+@login_required(login_url='/login/')
+def pv_doc_view(request,pv_id):
+    pv = get_object_or_404(Proces_verbal, id=pv_id )
+
+
+    html_template = loader.get_template('meeting_doc.html')
+    return HttpResponse(html_template.render({'pv' : pv},request))
 
 
 @login_required(login_url="/login/")
