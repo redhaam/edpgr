@@ -22,11 +22,11 @@
 				<td> {{expert.title}} </td>
 				<td> {{expert.grade}} </td>
 				<td> {{expert.organization}}</td>
-				<td> {{expert.interests}}</td>
+				<!-- <td> {{expert.interests}}</td> -->
                 <td>
-                {% comment %} {% for interest in expert.interests%}
-                    {{interst}} ", " 
-                {% endfor %} {% endcomment %}   
+                 {% for interest in expert.interests.all() %}
+                    {{ interest }} ", " 
+                {% endfor %}  
                 </td>
 			</tr>
 			{% endfor %}
