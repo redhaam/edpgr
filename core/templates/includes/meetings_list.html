@@ -4,21 +4,19 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Titre</th>
-				<th scope="col">Status</th>
-				<th scope="col">Validé par</th>
-				<th scope="col">Date réunion</th>
+				<th scope="col">Date</th>
+				<th scope="col">Etat</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for pv in pvs %}
+			{% for meeting in meetings %}
 			<tr>
-				<td scope="row"> {{pv.id}} </a> </td>
-				<td scope="row"> <a href=" {% url 'pv_detail' pv_id=pv.id%}"> {{pv.title}} </a> </td>
-				<td> {{pv.status}} </td>
-				<td> {{pv.validated_by}} </td>
+				<td scope="row"> {{meeting.id}} </a> </td>
+				<td scope="row"> <a href=" {% url 'during_meeting' meeting_id=meeting.id %}"> {{meeting.title}} </a> </td>
 				<td>
-					{{pv.date|date}}
+					{{meeting.date|date}}
 				</td>
+				<td> {{meeting.status}} </td>
 			</tr>
 			{% endfor %}
 		</tbody>

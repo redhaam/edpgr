@@ -8,9 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
-from django import template
+from django import forms, template
 from .MeetingForm import MeetingForm
-from .models import Dossier, Expert, Proces_verbal
+from .models import Dossier, Expert, Meeting, Proces_verbal
+from bson import ObjectId
+
 
 @login_required(login_url="/login/")
 def index(request):
@@ -78,9 +80,26 @@ def pv_detail_view(request,pv_id):
 
 @login_required(login_url="/login/")
 def meetings_view(request):
+    meetings= Meeting.objects.all()
     html_template = loader.get_template('meetings.html')
-    form = MeetingForm()
-    return HttpResponse(html_template.render({'segment' : "meetings","scheduleMeeting":form},request)) 
+    if request.method == 'POST':
+        form= MeetingForm(request.POST)
+        if form.is_valid():
+            form_response = form.cleaned_data            
+            new_meeting = Meeting(title=form_response['title'],date=form_response['date'],body=form_response['body'])
+            new_meeting.save()
+
+            new_meeting.guests.set(form_response['guests'])
+            new_meeting.folders_to_treat.set(form_response['folders_to_treat'])
+            new_pv = Proces_verbal(title=f'PV ${form_response["title"]}',date=form_response['date'],status="empty")
+            new_pv.save()
+            new_meeting.pv = new_pv
+        else:
+            print('form invalid')
+            print(form.errors)
+    else:
+        form = MeetingForm()
+    return HttpResponse(html_template.render({'segment' : "meetings","scheduleMeeting":form,"meetings":meetings},request)) 
 
 @login_required(login_url='/login/')
 def add_expert_view(request):
@@ -103,8 +122,8 @@ def add_expert_view(request):
     return  HttpResponse(html_template.render({'new_expert': new_expert, 'expert_form': expert_form},request))#render(request, 'add_experts.html', {'post': post,'experts': experts, 'new_expert': new_expert, 'expert_form': expert_form})
 
 @login_required(login_url='/login/')
-def during_meeting_view(request, meetingId):
-    post = get_object_or_404(Expert, id=meetingId)
+def during_meeting_view(request, meeting_id):
+    post = get_object_or_404(Expert, id=meeting_id)
     # form = ExpertPostForm()
     # TODO: continue meeting
     new_meeting = None
@@ -119,7 +138,7 @@ def during_meeting_view(request, meetingId):
         else:
             meeting_during = MeetingDuring()
     # return render(request, 'add_experts.html', {'form': form})
-    html_template = loader.get_template('durnig_meetings.html')
+    html_template = loader.get_template('during_meetings.html')
     return  HttpResponse(html_template.render({'new_meeting': new_meeting, 'meeting_form': meeting_form},request))#render(request, 'add_experts.html', {'post': post,'experts': experts, 'new_expert': new_expert, 'expert_form': expert_form})
 
 

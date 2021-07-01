@@ -3,7 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from app.models import Candidat, Dossier, Expert, Meeting, Proces_verbal
+from app.models import Candidat, Dossier, Expert, Interest, Meeting, Proces_verbal, Member
 
 from django.contrib import admin
 
@@ -30,3 +30,6 @@ class DossierAdmin(admin.ModelAdmin):
 @admin.register(Expert)
 class DossierAdmin(admin.ModelAdmin):
     search_fields= ('full_name',)
+
+admin.site.register(Interest)
+admin.site.register(Member)

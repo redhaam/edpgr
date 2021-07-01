@@ -1,13 +1,13 @@
 {% extends "layouts/base.html" %} {% block title %} Dossier detail {% endblock%}
 {% block content%}
 
-<h1 class="text-center"> {{dossier.title}} </h1>
+<h1 class="text-center mb-4"> {{dossier.title}} </h1>
 <div class="row">
-	<div class="col-6">
+	<div class="col-6 d-flex">
 		<img
 			src="{{dossier.owner.profile_pic }}"
-			class="img-fluid img-thumbnail square rounded-circle"
-			style="width:250px;height:250px"
+			class="img-fluid img-thumbnail square mx-auto rounded-circle"
+			style="width:250px;height:250px;object-fit:cover"
 		/>
 	</div>
 

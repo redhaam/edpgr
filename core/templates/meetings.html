@@ -1,17 +1,15 @@
 {% extends "layouts/base.html" %} {% block title %} Réunion {% endblock %}
 {%block content%}
 
-<div>
+<div class="mt-5">
 	<div class="col-lg-4">
-		<!-- Button Modal -->
 		<button
 			type="button"
-			class="btn btn-block btn-dark mb-3"
+			class="btn btn-block btn-dark btn-lg mb-3"
 			data-bs-toggle="modal"
 			data-bs-target="#modal-form"
-			>Sign In</button
+			>Programmer une réunion</button
 		>
-		<!-- Modal Content -->
 		<div
 			class="modal fade"
 			id="modal-form"
@@ -44,8 +42,9 @@
 									class="mt-4"
 								>
 									<div class="form-group">
-										{% csrf_token %} 
-										{{scheduleMeeting.as_p}}
+										{% csrf_token %}
+												{{scheduleMeeting.as_p}}
+
 									</div>
 									<div class="d-grid">
 										<button
@@ -64,9 +63,8 @@
 									"
 								>
 									<span class="fw-normal">
-										Not registered?
 										<a href="#" class="fw-bold"
-											>Create account</a
+											>Verifier la disponibilité</a
 										>
 									</span>
 								</div>
@@ -78,6 +76,12 @@
 		</div>
 		<!-- End of Modal Content -->
 	</div>
+
+	<div>
+	{% include "includes/meetings_list.html" %}
+	
+	</div>
+
 </div>
 
 {% endblock content %}
