@@ -10,7 +10,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import forms, template
 from .MeetingForm import MeetingForm
-from .models import Dossier, Expert, Meeting, Proces_verbal
+from .models import Dossier, Expert, Meeting, Member, Proces_verbal
 from bson import ObjectId
 
 
@@ -55,6 +55,7 @@ def experts_view(request):
 
     experts = Expert.objects.all()
     context['experts'] = experts
+    print(experts)
 
     html_template = loader.get_template( 'experts.html' )
     return HttpResponse(html_template.render(context, request))
@@ -123,18 +124,18 @@ def add_expert_view(request):
 
 @login_required(login_url='/login/')
 def during_meeting_view(request, meeting_id):
-    post = get_object_or_404(Expert, id=meeting_id)
+    meeting_form = get_object_or_404(Meeting, id=meeting_id)
     # form = ExpertPostForm()
     # TODO: continue meeting
     new_meeting = None
-    meeting_form = MeetingDuring()
+    # meeting_form = MeetingDuring()
 
     if request.method == 'POST':
         meeting_during = MeetingDuring(request.POST)
         if meeting_during.is_valid():
             new_meeting = meeting_during.save(commit=False)
             new_meeting.save()
-            return redirect('experts')
+            return redirect('meeting')
         else:
             meeting_during = MeetingDuring()
     # return render(request, 'add_experts.html', {'form': form})
@@ -148,8 +149,14 @@ def during_meeting_view(request, meeting_id):
 
 @login_required(login_url="/login/")
 def members_view(request):
+    context = {}
+    context['segment'] = 'members'
+
+    members = Member.objects.all()
+    context['members'] = members
+
     html_template = loader.get_template('members.html')
-    return HttpResponse(html_template.render({'segment' : "members"},request)) 
+    return HttpResponse(html_template.render(context,request)) 
     
 
 

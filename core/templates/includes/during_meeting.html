@@ -6,11 +6,10 @@
                         
                             <h2>Meeting {{meeting.title}} </h2>
                             <form method="post" class="post-form">
-                                {{ expert_form.as_p }}
+                                {{ meeting_form.as_p }}
                                 {% csrf_token %}
-                                <p><input type="submit" value="Ajouter l'expert"></p>
+                                <p><input type="submit" value="Enregistrer Meeting"></p>
                             </form>
-                        
                     </div>
                 </div>
             </div>
