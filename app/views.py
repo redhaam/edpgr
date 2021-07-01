@@ -99,7 +99,7 @@ def meetings_view(request):
 
             new_meeting.guests.set(form_response['guests'])
             new_meeting.folders_to_treat.set(form_response['folders_to_treat'])
-            new_pv = Proces_verbal(title=f'PV ${form_response["title"]}',date=form_response['date'],status="empty")
+            new_pv = Proces_verbal(title=f'PV {form_response["title"]}',date=form_response['date'],status="empty")
             new_pv.save()
             new_meeting.pv = new_pv
         else:
