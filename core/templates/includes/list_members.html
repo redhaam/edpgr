@@ -1,0 +1,21 @@
+<div class="col-12">
+	<table class="table align-items-center table-flush">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">Nom Et prénom</th>
+				<th scope="col">Organization</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for member in members %}
+			<tr>
+				<td scope="row"> {{member.get_fullname}} </td>
+				<td>
+					{{member.organization}}
+				</td>
+				
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
